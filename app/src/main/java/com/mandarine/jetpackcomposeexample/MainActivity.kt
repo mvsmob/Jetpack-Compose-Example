@@ -5,34 +5,32 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.mandarine.jetpackcomposeexample.screens.Screen
+import com.mandarine.jetpackcomposeexample.screens.main.MainScreen
+import com.mandarine.jetpackcomposeexample.screens.second_screen.SecondScreen
 import com.mandarine.jetpackcomposeexample.ui.theme.JetpackComposeExampleTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var navController: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val startRoute = Screen.Main.route
         setContent {
             JetpackComposeExampleTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    navController = rememberNavController()
+                    NavHost(navController = navController, startDestination = startRoute) {
+                        composable(route = Screen.Main.route) { MainScreen(navController = navController) }
+                        composable(route = Screen.SecondScreen.route) { SecondScreen() }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    JetpackComposeExampleTheme {
-        Greeting("Android")
     }
 }
