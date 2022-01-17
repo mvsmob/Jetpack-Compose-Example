@@ -1,34 +1,53 @@
 package com.mandarine.jetpackcomposeexample.screens.second_screen
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Surface
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.mandarine.jetpackcomposeexample.R
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.mandarine.jetpackcomposeexample.data.remote.dto.PostResponse
 import com.mandarine.jetpackcomposeexample.ui.theme.JetpackComposeExampleTheme
 import org.koin.androidx.compose.get
 
 @Composable
 fun SecondScreen(viewModel: SecondScreenViewModel = get()) {
-    SecondScreenContent()
+
+    val state = viewModel.state.value
+    SecondScreenContent(screenState = state)
 }
 
 @Composable
-fun SecondScreenContent() {
-
-    Surface {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(stringResource(R.string.second_screen_title))
+fun SecondScreenContent(screenState: PostState) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(screenState.posts!!) { posts ->
+                Text(text = posts.title, fontSize = 20.sp)
+            }
+        }
+        if (screenState.error.isNotBlank()) {
+            Text(
+                text = screenState.error,
+                color = MaterialTheme.colors.error,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .align(Alignment.Center)
+            )
+        }
+        if (screenState.isLoading) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
     }
 }
@@ -37,6 +56,17 @@ fun SecondScreenContent() {
 @Composable
 fun MainScreenPreview() {
     JetpackComposeExampleTheme() {
-        SecondScreenContent()
+        SecondScreenContent(
+            screenState = PostState(
+                posts = listOf(
+                    PostResponse(
+                        body = "body",
+                        title = "title",
+                        id = 1,
+                        userId = 1
+                    )
+                )
+            )
+        )
     }
 }
