@@ -1,21 +1,24 @@
 package com.mandarine.jetpackcomposeexample.presentation.screens.second_screen
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.mandarine.jetpackcomposeexample.R
 import com.mandarine.jetpackcomposeexample.data.remote.dto.PostResponse
 import com.mandarine.jetpackcomposeexample.ui.theme.JetpackComposeExampleTheme
 import org.koin.androidx.compose.get
@@ -32,7 +35,7 @@ fun SecondScreenContent(screenState: PostState) {
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(screenState.posts!!) { posts ->
-                Text(text = posts.title, fontSize = 20.sp)
+                PostContent(posts = posts)
             }
         }
         if (screenState.error.isNotBlank()) {
@@ -52,6 +55,56 @@ fun SecondScreenContent(screenState: PostState) {
     }
 }
 
+@Composable
+fun PostContent(posts: PostResponse) {
+    Card(
+        backgroundColor = MaterialTheme.colors.primary,
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    ) {
+        CardContent(posts)
+    }
+}
+
+@Composable
+fun CardContent(posts: PostResponse) {
+    var expanded by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = Modifier
+            .padding(12.dp)
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(12.dp)
+        ) {
+            Text(
+                text = posts.title,
+                style = MaterialTheme.typography.h5.copy(
+                    fontWeight = FontWeight.ExtraBold
+                )
+            )
+            if (expanded) Text(text = posts.body)
+        }
+        IconButton(onClick = { expanded = !expanded }) {
+            Icon(
+                imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                contentDescription = if (expanded) {
+                    stringResource(R.string.show_less)
+                } else {
+                    stringResource(R.string.show_more)
+                }
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true, widthDp = 320, heightDp = 320)
 @Composable
 fun MainScreenPreview() {
@@ -64,6 +117,12 @@ fun MainScreenPreview() {
                         title = "title",
                         id = 1,
                         userId = 1
+                    ),
+                    PostResponse(
+                        body = "body2",
+                        title = "title2",
+                        id = 2,
+                        userId = 2
                     )
                 )
             )
