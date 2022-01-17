@@ -3,6 +3,8 @@ package com.mandarine.jetpackcomposeexample.app
 import android.app.Application
 import com.mandarine.jetpackcomposeexample.BuildConfig
 import com.mandarine.jetpackcomposeexample.di.appModule
+import com.mandarine.jetpackcomposeexample.di.dataModule
+import com.mandarine.jetpackcomposeexample.di.domainModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -16,7 +18,7 @@ class App : Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(applicationContext)
-            modules(listOf(appModule))
+            modules(listOf(appModule, domainModule, dataModule))
         }
     }
 }

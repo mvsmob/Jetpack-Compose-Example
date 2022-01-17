@@ -24,10 +24,9 @@ val appModule = module {
     viewModel<SecondScreenViewModel>{
         SecondScreenViewModel(getPostsUseCase = get())
     }
+}
 
-    factory<GetPostsUseCase> {
-        GetPostsUseCase(repository = get())
-    }
+val dataModule = module {
 
     single<ApiInterface> {
         ApiInterfaceImpl(
@@ -44,5 +43,12 @@ val appModule = module {
 
     single<PostRepository>{
         PostRepositoryImpl(api = get())
+    }
+}
+
+val domainModule = module {
+
+    factory<GetPostsUseCase> {
+        GetPostsUseCase(repository = get())
     }
 }
