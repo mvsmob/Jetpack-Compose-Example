@@ -1,8 +1,8 @@
-package com.mandarine.jetpackcomposeexample.data.use_case.posts
+package com.mandarine.jetpackcomposeexample.domain.use_case.posts
 
 import com.mandarine.jetpackcomposeexample.data.remote.dto.PostResponse
-import com.mandarine.jetpackcomposeexample.data.remote.repository.PostRepository
-import com.mandarine.jetpackcomposeexample.data.use_case.Resource
+import com.mandarine.jetpackcomposeexample.common.Resource
+import com.mandarine.jetpackcomposeexample.domain.repository.PostRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.IOException

@@ -2,11 +2,11 @@ package com.mandarine.jetpackcomposeexample.di
 
 import com.mandarine.jetpackcomposeexample.data.remote.network.ApiInterface
 import com.mandarine.jetpackcomposeexample.data.remote.network.ApiInterfaceImpl
-import com.mandarine.jetpackcomposeexample.data.remote.repository.PostRepository
-import com.mandarine.jetpackcomposeexample.data.remote.repository.PostRepositoryImpl
-import com.mandarine.jetpackcomposeexample.data.use_case.posts.GetPostsUseCase
-import com.mandarine.jetpackcomposeexample.screens.main.MainViewModel
-import com.mandarine.jetpackcomposeexample.screens.second_screen.SecondScreenViewModel
+import com.mandarine.jetpackcomposeexample.data.repository.PostRepositoryImpl
+import com.mandarine.jetpackcomposeexample.domain.repository.PostRepository
+import com.mandarine.jetpackcomposeexample.domain.use_case.posts.GetPostsUseCase
+import com.mandarine.jetpackcomposeexample.presentation.screens.main.MainViewModel
+import com.mandarine.jetpackcomposeexample.presentation.screens.second_screen.SecondScreenViewModel
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.json.*

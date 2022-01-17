@@ -1,4 +1,4 @@
-package com.mandarine.jetpackcomposeexample.screens.second_screen
+package com.mandarine.jetpackcomposeexample.presentation.screens.second_screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

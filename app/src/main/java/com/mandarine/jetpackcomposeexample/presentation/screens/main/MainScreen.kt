@@ -1,4 +1,4 @@
-package com.mandarine.jetpackcomposeexample.screens.main
+package com.mandarine.jetpackcomposeexample.presentation.screens.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.mandarine.jetpackcomposeexample.R
-import com.mandarine.jetpackcomposeexample.screens.Screen
+import com.mandarine.jetpackcomposeexample.presentation.screens.Screen
 import com.mandarine.jetpackcomposeexample.ui.theme.JetpackComposeExampleTheme
 import org.koin.androidx.compose.get
 

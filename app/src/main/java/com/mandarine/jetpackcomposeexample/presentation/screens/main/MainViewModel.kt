@@ -1,4 +1,4 @@
-package com.mandarine.jetpackcomposeexample.screens.main
+package com.mandarine.jetpackcomposeexample.presentation.screens.main
 
 import androidx.lifecycle.ViewModel
 

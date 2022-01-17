@@ -1,11 +1,11 @@
-package com.mandarine.jetpackcomposeexample.screens.second_screen
+package com.mandarine.jetpackcomposeexample.presentation.screens.second_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mandarine.jetpackcomposeexample.data.use_case.Resource
-import com.mandarine.jetpackcomposeexample.data.use_case.posts.GetPostsUseCase
+import com.mandarine.jetpackcomposeexample.common.Resource
+import com.mandarine.jetpackcomposeexample.domain.use_case.posts.GetPostsUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
