@@ -2,4 +2,6 @@
     <string name="app_name">Jetpack Compose Example</string>
     <string name="action_go_to">Go to the second screen</string>
     <string name="second_screen_title">Welcome to the Second Screen!</string>
+    <string name="show_less">Show less</string>
+    <string name="show_more">Show more</string>
 </resources>

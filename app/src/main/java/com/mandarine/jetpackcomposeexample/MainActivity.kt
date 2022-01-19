@@ -9,9 +9,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mandarine.jetpackcomposeexample.screens.Screen
-import com.mandarine.jetpackcomposeexample.screens.main.MainScreen
-import com.mandarine.jetpackcomposeexample.screens.second_screen.SecondScreen
+import com.mandarine.jetpackcomposeexample.presentation.screens.Screen
+import com.mandarine.jetpackcomposeexample.presentation.screens.main.MainScreen
+import com.mandarine.jetpackcomposeexample.presentation.screens.second_screen.SecondScreen
 import com.mandarine.jetpackcomposeexample.ui.theme.JetpackComposeExampleTheme
 
 class MainActivity : ComponentActivity() {
