@@ -8,10 +8,11 @@ import com.mandarine.jetpackcomposeexample.data.repository.PostRepositoryImpl
 import com.mandarine.jetpackcomposeexample.data.repository.PreferenceRepositoryImpl
 import com.mandarine.jetpackcomposeexample.domain.repository.PostRepository
 import com.mandarine.jetpackcomposeexample.domain.repository.PreferenceRepository
+import com.mandarine.jetpackcomposeexample.domain.use_case.onboarding.CompleteOnboardingUseCase
 import com.mandarine.jetpackcomposeexample.domain.use_case.posts.GetPostsUseCase
 import com.mandarine.jetpackcomposeexample.domain.use_case.splash.ChooseNextRouteUseCase
-import com.mandarine.jetpackcomposeexample.presentation.screens.main.MainViewModel
-import com.mandarine.jetpackcomposeexample.presentation.screens.second_screen.SecondScreenViewModel
+import com.mandarine.jetpackcomposeexample.presentation.screens.onboarding.OnboardingViewModel
+import com.mandarine.jetpackcomposeexample.presentation.screens.post.PostScreenViewModel
 import com.mandarine.jetpackcomposeexample.presentation.screens.splash.SplashScreenViewModel
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
@@ -28,12 +29,12 @@ val appModule = module {
         SplashScreenViewModel(chooseNextRouteUseCase = get())
     }
 
-    viewModel<MainViewModel> {
-        MainViewModel()
+    viewModel<OnboardingViewModel> {
+        OnboardingViewModel(completeOnboardingUseCase = get())
     }
 
-    viewModel<SecondScreenViewModel> {
-        SecondScreenViewModel(getPostsUseCase = get())
+    viewModel<PostScreenViewModel> {
+        PostScreenViewModel(getPostsUseCase = get())
     }
 }
 
@@ -75,5 +76,9 @@ val domainModule = module {
 
     factory<ChooseNextRouteUseCase> {
         ChooseNextRouteUseCase(preferenceRepository = get())
+    }
+
+    factory<CompleteOnboardingUseCase> {
+        CompleteOnboardingUseCase(preferenceRepository = get())
     }
 }

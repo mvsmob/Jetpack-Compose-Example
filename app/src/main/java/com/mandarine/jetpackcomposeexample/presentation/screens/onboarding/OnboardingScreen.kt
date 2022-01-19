@@ -1,4 +1,4 @@
-package com.mandarine.jetpackcomposeexample.presentation.screens.main
+package com.mandarine.jetpackcomposeexample.presentation.screens.onboarding
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,21 +14,27 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.mandarine.jetpackcomposeexample.R
 import com.mandarine.jetpackcomposeexample.presentation.screens.Screen
+import com.mandarine.jetpackcomposeexample.presentation.screens.common.LottieExample
 import com.mandarine.jetpackcomposeexample.ui.theme.JetpackComposeExampleTheme
 import org.koin.androidx.compose.get
 
 @Composable
-fun MainScreen(
+fun OnboardingScreen(
     navController: NavController,
-    viewModel: MainViewModel = get()
+    viewModel: OnboardingViewModel = get()
 ) {
-    MainScreenContent(
-        onContinueClicked = { navController.navigate(Screen.SecondScreen.route) }
+    OnboardingScreenContent(
+        onContinueClicked = {
+            viewModel.completeOnboarding()
+            navController.navigate(Screen.Post.route) {
+                popUpTo(id = 0)
+            }
+        }
     )
 }
 
 @Composable
-fun MainScreenContent(onContinueClicked: () -> Unit) {
+fun OnboardingScreenContent(onContinueClicked: () -> Unit) {
 
     Surface {
         Column(
@@ -36,6 +42,7 @@ fun MainScreenContent(onContinueClicked: () -> Unit) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            LottieExample()
             Button(onClick = onContinueClicked) {
                 Text(stringResource(R.string.action_go_to))
             }
@@ -47,6 +54,6 @@ fun MainScreenContent(onContinueClicked: () -> Unit) {
 @Composable
 fun MainScreenPreview() {
     JetpackComposeExampleTheme() {
-        MainScreenContent(onContinueClicked = {})
+        OnboardingScreenContent(onContinueClicked = {})
     }
 }

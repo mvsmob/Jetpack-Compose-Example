@@ -1,4 +1,4 @@
-package com.mandarine.jetpackcomposeexample.presentation.screens.second_screen
+package com.mandarine.jetpackcomposeexample.presentation.screens.post
 
 import com.mandarine.jetpackcomposeexample.data.remote.dto.PostResponse
 

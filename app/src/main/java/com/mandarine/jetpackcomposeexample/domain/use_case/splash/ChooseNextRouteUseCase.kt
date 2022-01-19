@@ -8,6 +8,6 @@ class ChooseNextRouteUseCase(private val preferenceRepository: PreferenceReposit
     private val shouldShowOnboarding: Boolean
         get() = preferenceRepository.completedOnboarding
 
-    val nextRoute: String = if (shouldShowOnboarding) Screen.SecondScreen.route
-    else Screen.Main.route
+    val nextRoute: String = if (shouldShowOnboarding) Screen.Post.route
+    else Screen.Onboarding.route
 }

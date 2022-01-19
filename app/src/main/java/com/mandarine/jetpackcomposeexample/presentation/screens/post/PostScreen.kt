@@ -1,4 +1,4 @@
-package com.mandarine.jetpackcomposeexample.presentation.screens.second_screen
+package com.mandarine.jetpackcomposeexample.presentation.screens.post
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
@@ -24,14 +24,14 @@ import com.mandarine.jetpackcomposeexample.ui.theme.JetpackComposeExampleTheme
 import org.koin.androidx.compose.get
 
 @Composable
-fun SecondScreen(viewModel: SecondScreenViewModel = get()) {
+fun PostScreen(viewModel: PostScreenViewModel = get()) {
 
     val state = viewModel.state.value
-    SecondScreenContent(screenState = state)
+    PostScreenContent(screenState = state)
 }
 
 @Composable
-fun SecondScreenContent(screenState: PostState) {
+fun PostScreenContent(screenState: PostState) {
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(screenState.posts!!) { posts ->
@@ -109,7 +109,7 @@ fun CardContent(posts: PostResponse) {
 @Composable
 fun MainScreenPreview() {
     JetpackComposeExampleTheme() {
-        SecondScreenContent(
+        PostScreenContent(
             screenState = PostState(
                 posts = listOf(
                     PostResponse(

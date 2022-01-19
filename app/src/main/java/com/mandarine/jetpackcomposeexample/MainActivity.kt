@@ -11,8 +11,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mandarine.jetpackcomposeexample.presentation.screens.Screen
 import com.mandarine.jetpackcomposeexample.presentation.screens.SplashScreen
-import com.mandarine.jetpackcomposeexample.presentation.screens.main.MainScreen
-import com.mandarine.jetpackcomposeexample.presentation.screens.second_screen.SecondScreen
+import com.mandarine.jetpackcomposeexample.presentation.screens.onboarding.OnboardingScreen
+import com.mandarine.jetpackcomposeexample.presentation.screens.post.PostScreen
 import com.mandarine.jetpackcomposeexample.ui.theme.JetpackComposeExampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,7 +36,7 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = startRoute) {
         composable(route = Screen.Splash.route) { SplashScreen(navController = navController) }
-        composable(route = Screen.Main.route) { MainScreen(navController = navController) }
-        composable(route = Screen.SecondScreen.route) { SecondScreen() }
+        composable(route = Screen.Onboarding.route) { OnboardingScreen(navController = navController) }
+        composable(route = Screen.Post.route) { PostScreen() }
     }
 }

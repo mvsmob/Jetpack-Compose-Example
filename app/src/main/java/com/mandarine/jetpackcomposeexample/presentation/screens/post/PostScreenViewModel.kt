@@ -1,4 +1,4 @@
-package com.mandarine.jetpackcomposeexample.presentation.screens.second_screen
+package com.mandarine.jetpackcomposeexample.presentation.screens.post
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -9,7 +9,7 @@ import com.mandarine.jetpackcomposeexample.domain.use_case.posts.GetPostsUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class SecondScreenViewModel(private val getPostsUseCase: GetPostsUseCase) : ViewModel() {
+class PostScreenViewModel(private val getPostsUseCase: GetPostsUseCase) : ViewModel() {
 
     private val _state = mutableStateOf<PostState>(PostState())
     val state: State<PostState> = _state
